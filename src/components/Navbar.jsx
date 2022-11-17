@@ -18,7 +18,6 @@ function Navbar() {
           <SearchContainer>
             <TextField
               size='small'
-              id='input-with-icon-textfield'
               InputProps={{
                 startAdornment: (
                   <InputAdornment position='start'>
