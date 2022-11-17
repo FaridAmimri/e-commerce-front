@@ -46,7 +46,8 @@ const Details = styled.div`
 `
 
 const Container = styled.div`
-  width: 280px;
+  flex: 1;
+  min-width: 280px;
   height: 350px;
   display: flex;
   align-items: center;
