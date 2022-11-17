@@ -6,13 +6,11 @@ import CategoryItem from './CategoryItem'
 
 function Categories() {
   return (
-    <>
-      <Container>
-        {categories.map((item) => (
-          <CategoryItem item={item} key={item.id} />
-        ))}
-      </Container>
-    </>
+    <Container>
+      {categories.map((item) => (
+        <CategoryItem item={item} key={item.id} />
+      ))}
+    </Container>
   )
 }
 
