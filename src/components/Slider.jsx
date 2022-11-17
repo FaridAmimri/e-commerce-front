@@ -31,7 +31,7 @@ function Slider() {
       </Arrow>
       <Wrapper currentSlide={currentSlide}>
         {sliderItems.map((slide, index) => (
-          <Slide key={index} background={slide.background}>
+          <Slide key={index}>
             {index === currentSlide && (
               <ImageContainer>
                 <Image src={slide.image} />
@@ -56,7 +56,7 @@ export default Slider
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  // height: 100vh;
   position: relative;
   display: flex;
   overflow-x: hidden;
@@ -89,11 +89,11 @@ const Wrapper = styled.div`
 `
 
 const Slide = styled.div`
-  height: 100vw;
+  // height: 100vw;
   width: 100vw;
   display: flex;
   align-items: center;
-  background-color: #${(props) => props.background};
+  // background-color: #${(props) => props.background};
 `
 
 const ImageContainer = styled.div`
@@ -108,7 +108,6 @@ const Image = styled.img`
 
 const TextContainer = styled.div`
   flex: 1;
-  height: 60%;
   padding: 50px;
 `
 
