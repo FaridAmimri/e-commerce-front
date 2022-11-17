@@ -3,7 +3,7 @@
 import styled from 'styled-components'
 
 function Announcement() {
-  return <Container>Super Deal ! Free Shipping on Orders Over 50 €</Container>
+  return <Container>Free shipping on orders over 50 €</Container>
 }
 
 export default Announcement
