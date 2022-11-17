@@ -53,6 +53,7 @@ export default Navbar
 
 const Container = styled.div`
   height: 60px;
+  background-color: #f5fafd;
 `
 
 const Wrapper = styled.div`
