@@ -33,6 +33,7 @@ function Navbar() {
         </Left>
         <Center>
           <ShoppingBagOutlinedIcon style={{ fontSize: 'xx-large' }} />
+          Bibi.
         </Center>
         <Right>
           <MenuItem>REGISTER</MenuItem>
@@ -81,11 +82,12 @@ const SearchContainer = styled.div`
 `
 
 const Center = styled.div`
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
   text-align: center;
+  font-weight: bold;
 `
 
 const Right = styled.div`
