@@ -31,17 +31,17 @@ export const categories = [
   {
     id: 1,
     image: 'assets/categories/categorie1.png',
-    title: 'SHIRT STYLE!'
+    title: 'STYLE'
   },
   {
     id: 2,
     image: 'assets/categories/categorie2.png',
-    title: 'LOUNGEWEAR LOVE'
+    title: 'ROOM'
   },
   {
     id: 3,
     image: 'assets/categories/categorie3.png',
-    title: 'LIGHT JACKETS'
+    title: 'ACCESSORIES'
   }
 ]
 
