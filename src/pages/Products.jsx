@@ -3,7 +3,7 @@
 import styled from 'styled-components'
 import Navbar from '../components/Navbar'
 import Announcement from '../components/Announcement'
-import Products from '../components/Products'
+import ProductList from '../components/ProductList'
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 import FormControl from '@mui/material/FormControl'
@@ -12,7 +12,7 @@ import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
 
-function ProductPage() {
+function Products() {
   const [color, setColor] = useState('')
   const [size, setSize] = useState('')
   const [price, setPrice] = useState('')
@@ -91,14 +91,14 @@ function ProductPage() {
           </FormControl>
         </Filter>
       </FilterContainer>
-      <Products />
+      <ProductList />
       <Newsletter />
       <Footer />
     </Container>
   )
 }
 
-export default ProductPage
+export default Products
 
 const Container = styled.div`
   //   display: flex;

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { categories } from '../data'
 import CategoryItem from './CategoryItem'
 
-function Categories() {
+function CategorieList() {
   return (
     <Container>
       {categories.map((item) => (
@@ -14,7 +14,7 @@ function Categories() {
   )
 }
 
-export default Categories
+export default CategorieList
 
 const Container = styled.div`
   display: flex;

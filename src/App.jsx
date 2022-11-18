@@ -1,12 +1,12 @@
 /** @format */
 
-import HomePage from './pages/HomePage'
-import ProductPage from './pages/ProductPage'
+// import Home from './pages/Home'
+import Products from './pages/Products'
 
 function App() {
   return (
     <div className='App'>
-      <ProductPage />
+      <Products />
     </div>
   )
 }

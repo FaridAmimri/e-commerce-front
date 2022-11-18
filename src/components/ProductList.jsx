@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { products } from '../data'
 import ProductItem from './ProductItem'
 
-function Products() {
+function ProductList() {
   return (
     <Container>
       {products.map((item) => (
@@ -14,7 +14,7 @@ function Products() {
   )
 }
 
-export default Products
+export default ProductList
 
 const Container = styled.div`
   display: flex;

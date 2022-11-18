@@ -3,8 +3,8 @@
 import Announcement from '../components/Announcement'
 import Navbar from '../components/Navbar'
 import Slider from '../components/Slider'
-import Categories from '../components/Categories'
-import Products from '../components/Products'
+import CategorieList from '../components/CategorieList'
+import ProductList from '../components/ProductList'
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 
@@ -14,8 +14,8 @@ function Home() {
       <Announcement />
       <Navbar />
       <Slider />
-      <Categories />
-      <Products />
+      <CategorieList />
+      <ProductList />
       <Newsletter />
       <Footer />
     </div>
