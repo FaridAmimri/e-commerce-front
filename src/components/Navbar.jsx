@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
 import SearchIcon from '@mui/icons-material/Search'
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined'
+import ChildFriendlyOutlinedIcon from '@mui/icons-material/ChildFriendlyOutlined'
 import Badge from '@mui/material/Badge'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 
@@ -32,8 +32,8 @@ function Navbar() {
           </SearchContainer>
         </Left>
         <Center>
-          <ShoppingBagOutlinedIcon style={{ fontSize: 'xx-large' }} />
-          Bibi.
+          <ChildFriendlyOutlinedIcon style={{ fontSize: 'xx-large' }} />
+          BiBi.
         </Center>
         <Right>
           <MenuItem>REGISTER</MenuItem>
@@ -88,6 +88,7 @@ const Center = styled.div`
   justify-content: center;
   text-align: center;
   font-weight: bold;
+  font-size: 25px;
 `
 
 const Right = styled.div`
