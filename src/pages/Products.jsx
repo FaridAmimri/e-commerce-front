@@ -10,6 +10,7 @@ import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
+import { mobile, tablet } from '../responsive'
 import { useState } from 'react'
 
 function Products() {
@@ -100,12 +101,12 @@ function Products() {
 
 export default Products
 
-const Container = styled.div`
-  //   display: flex;
-`
+const Container = styled.div``
 
 const Title = styled.h1`
   margin: 20px;
+  ${mobile({ textAlign: 'center' })};
+  ${tablet({ textAlign: 'center' })};
 `
 
 const FilterContainer = styled.div`
@@ -117,6 +118,8 @@ const Filter = styled.div`
   display: flex;
   margin: 20px;
   gap: 10px;
+  ${mobile({ flexDirection: 'column', flex: 1 })};
+  ${tablet({ flexDirection: 'column', flex: 1 })};
 `
 
 const FilterText = styled.span`

@@ -6,6 +6,7 @@ import ArrowRightOutlined from '@mui/icons-material/ArrowRightOutlined'
 import Button from '@mui/material/Button'
 import { useState } from 'react'
 import { sliderItems } from '../data'
+import { mobile, tablet } from '../responsive'
 
 function Slider() {
   const slideListLength = sliderItems.length
@@ -56,10 +57,10 @@ export default Slider
 
 const Container = styled.div`
   width: 100%;
-  // height: 100vh;
   position: relative;
   display: flex;
   overflow-x: hidden;
+  ${mobile({ display: 'none' })}
 `
 
 const Arrow = styled.div`
@@ -89,11 +90,9 @@ const Wrapper = styled.div`
 `
 
 const Slide = styled.div`
-  // height: 100vw;
   width: 100vw;
   display: flex;
   align-items: center;
-  // background-color: #${(props) => props.background};
 `
 
 const ImageContainer = styled.div`
@@ -104,15 +103,18 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
   object-fit: cover;
+  ${tablet({ width: '200px' })}
 `
 
 const TextContainer = styled.div`
   flex: 1;
   padding: 50px;
+  ${tablet({ padding: '40px' })}
 `
 
 const Title = styled.h1`
   font-size: 50px;
+  ${tablet({ fontSize: '25px' })}
 `
 
 const Description = styled.p`
@@ -120,4 +122,5 @@ const Description = styled.p`
   margin: 50px 0;
   font-weight: 500;
   letter-spacing: 3px;
+  ${tablet({ fontSize: '15px' })}
 `

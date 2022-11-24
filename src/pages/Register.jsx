@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
 import Button from '@mui/material/Button'
+import { mobile, tablet } from '../responsive'
 
 function Register() {
   return (
@@ -55,14 +56,21 @@ function Register() {
               type='password'
               color='success'
             />
-            <FormControlLabel
-              className='agreement'
-              control={<Checkbox className='checkbox' color='success' />}
-              label='I consent and I accept Terms and Conditions'
-            />
-            <Button variant='contained' size='large' color='success'>
-              CREATE
-            </Button>
+            <div className='agreementContainer'>
+              <FormControlLabel
+                className='agreement'
+                control={<Checkbox className='checkbox' color='success' />}
+                label='I consent and I accept Terms and Conditions'
+              />
+              <Button
+                className='button'
+                variant='contained'
+                size='large'
+                color='success'
+              >
+                CREATE
+              </Button>
+            </div>
           </Box>
         </FormContainer>
       </Container>
@@ -91,17 +99,29 @@ const FormContainer = styled.div`
   position: absolute;
   width: 420px;
   padding: 20px;
+  ${mobile({ width: 'auto' })};
   .form {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    ${mobile({ justifyContent: 'center' })};
+    ${tablet({ justifyContent: 'center' })};
   }
   .input {
     width: 200px;
+    ${mobile({ width: '150px ' })};
+    ${tablet({ width: '180px ' })};
+  }
+  .agreementContainer {
+    display: flex;
+    flex-direction: column;
   }
   .agreement {
     font-size: 12px;
     margin: 20px 0;
+  }
+  .button {
+    width: 150px;
   }
   .checkbox {
     padding: 0px;
@@ -113,4 +133,6 @@ const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
   margin-bottom: 20px;
+  ${mobile({ fontSize: '20px', textAlign: 'center' })};
+  ${tablet({ fontSize: '22px', textAlign: 'center' })};
 `

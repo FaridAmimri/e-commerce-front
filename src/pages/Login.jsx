@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
+import { mobile, tablet } from '../responsive'
 
 function Login() {
   return (
@@ -55,11 +56,12 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  ${mobile({ height: '50%' })};
+  ${tablet({ height: '80%' })};
 `
 
 const FormContainer = styled.div`
   position: absolute;
-  width: 30%;
   min-width: 300px;
   .form {
     display: flex;
@@ -72,6 +74,8 @@ const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
   margin-bottom: 20px;
+  ${mobile({ textAlign: 'center' })};
+  ${tablet({ textAlign: 'center' })};
 `
 
 const Link = styled.a`

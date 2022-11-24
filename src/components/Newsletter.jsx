@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField'
 import IconButton from '@mui/material/IconButton'
 import SendIcon from '@mui/icons-material/Send'
 import InputAdornment from '@mui/material/InputAdornment'
+import { mobile, tablet } from '../responsive'
 
 function Newsletter() {
   return (
@@ -15,7 +16,9 @@ function Newsletter() {
         <TextField
           fullWidth
           size='large'
+          placeholder='Your Email'
           type='email'
+          color='success'
           InputProps={{
             endAdornment: (
               <InputAdornment position='start'>
@@ -45,6 +48,8 @@ const Container = styled.div`
 const Title = styled.h1`
   font-size: 50px;
   margin-bottom: 20px;
+  ${mobile({ fontSize: '25px' })};
+  ${tablet({ fontSize: '40px' })};
 `
 
 const Description = styled.div`
@@ -58,4 +63,6 @@ const InputContainer = styled.div`
   width: 50%;
   height: 56px;
   background-color: #fff;
+  ${mobile({ width: '80%' })}
+  ${tablet({ width: '80%' })}
 `

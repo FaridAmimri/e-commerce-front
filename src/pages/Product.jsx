@@ -12,6 +12,7 @@ import { Remove, Add } from '@mui/icons-material'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import CircleIcon from '@mui/icons-material/Circle'
+import { mobile, tablet } from '../responsive'
 
 function Product() {
   return (
@@ -81,20 +82,28 @@ const Container = styled.div``
 const Wrapper = styled.div`
   display: flex;
   padding: 50px;
+  ${mobile({ padding: '10px', flexDirection: 'column' })};
+  ${tablet({ padding: '20px', flexDirection: 'column' })};
 `
 
 const ImageContainer = styled.div`
   flex: 1;
+  ${mobile({ display: 'flex', justifyContent: 'center' })};
+  ${tablet({ display: 'flex', justifyContent: 'center' })};
 `
 
 const Image = styled.img`
   height: 90vh;
   object-fit: cover;
+  ${mobile({ height: '50vh' })};
+  ${tablet({ height: '70vh' })};
 `
 
 const DetailsContainer = styled.div`
   flex: 1;
   padding: 0px 50px;
+  ${mobile({ padding: '20px' })};
+  ${tablet({ padding: '30px' })};
 `
 
 const Title = styled.h1`
@@ -116,6 +125,8 @@ const FilterContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 70%;
+  ${mobile({ flexDirection: 'column', alignItems: 'flex-start' })};
+  ${tablet({ width: '320px' })};
 `
 
 const FilterWrapper = styled.div`
@@ -140,6 +151,8 @@ const AddContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  ${mobile({ width: '220px' })};
+  ${tablet({ width: '230px' })};
 `
 
 const AmountContainer = styled.div`

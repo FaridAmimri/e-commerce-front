@@ -7,6 +7,7 @@ import Footer from '../components/Footer'
 import Button from '@mui/material/Button'
 import CircleIcon from '@mui/icons-material/Circle'
 import { Remove, Add } from '@mui/icons-material'
+import { mobile, tablet } from '../responsive'
 
 function Cart() {
   return (
@@ -16,14 +17,14 @@ function Cart() {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <Button variant='outlined' size='large' color='success'>
+          <Button variant='outlined' size='small' color='success'>
             CONTINUE SHOPPING
           </Button>
           <Texts>
             <Text>Shopping Bag(2)</Text>
             <Text>Your Wishlist (0)</Text>
           </Texts>
-          <Button variant='outlined' size='large' color='primary'>
+          <Button variant='outlined' size='small' color='primary'>
             CHECKOUT NOW
           </Button>
         </Top>
@@ -104,9 +105,11 @@ function Cart() {
               <SummaryContent>Total</SummaryContent>
               <SummaryPrice>83 €</SummaryPrice>
             </SummaryItem>
-            <Button variant='contained' size='large'>
-              CHECKOUT NOW
-            </Button>
+            <ButtonContainer>
+              <Button variant='contained' size='small'>
+                CHECKOUT NOW
+              </Button>
+            </ButtonContainer>
           </Summary>
         </Bottom>
       </Wrapper>
@@ -121,11 +124,15 @@ const Container = styled.div``
 
 const Wrapper = styled.div`
   padding: 20px;
+  ${mobile({ padding: '10px' })};
+  ${tablet({ padding: '15px' })}
 `
 
 const Title = styled.h1`
   font-weight: 300;
   text-align: center;
+  ${mobile({ marginBottom: '10px' })};
+  ${tablet({ marginBottom: '10px' })}
 `
 
 const Top = styled.div`
@@ -139,6 +146,7 @@ const Texts = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  ${mobile({ display: 'none' })};
 `
 
 const Text = styled.span`
@@ -150,6 +158,8 @@ const Text = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
+  ${mobile({ flexDirection: 'column' })};
+  ${tablet({ flexDirection: 'column' })}
 `
 
 const Article = styled.div`
@@ -160,6 +170,8 @@ const Article = styled.div`
 
 const Item = styled.div`
   display: flex;
+  ${mobile({ flexDirection: 'column' })};
+  ${tablet({ flexDirection: 'column' })}
 `
 
 const ProductDetail = styled.div`
@@ -208,11 +220,15 @@ const AmountContainer = styled.div`
 const Amount = styled.div`
   font-size: 24px;
   margin: 5px;
+  ${mobile({ margin: '7px 17px' })};
+  ${tablet({ margin: '5px 15px' })}
 `
 
 const Price = styled.div`
   font-size: 30px;
   font-weight: 200;
+  ${mobile({ marginBottom: '22px' })};
+  ${tablet({ marginBottom: '20px' })}
 `
 
 const Hr = styled.hr`
@@ -226,7 +242,7 @@ const Summary = styled.div`
   border: 0.5px solid lightgray;
   border-radius: 10px;
   padding: 20px;
-  height: 55vh;
+  height: 60vh;
 `
 const SummaryTitle = styled.h1`
   font-weight: 300;
@@ -243,3 +259,11 @@ const SummaryItem = styled.div`
 const SummaryContent = styled.span``
 
 const SummaryPrice = styled.span``
+
+const ButtonContainer = styled.div`
+  ${mobile({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  })};
+`
