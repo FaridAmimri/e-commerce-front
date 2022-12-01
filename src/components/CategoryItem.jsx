@@ -2,15 +2,18 @@
 
 import styled from 'styled-components'
 import Button from '@mui/material/Button'
+import { Link } from 'react-router-dom'
 
 function CategoryItem({ item }) {
   return (
     <Container>
-      <Image src={item.image} />
-      <Details>
-        <Title>{item.title}</Title>
-        <Button variant='contained'>SHOW NOW</Button>
-      </Details>
+      <Link to={`/products/${item.category}`}>
+        <Image src={item.image} />
+        <Details>
+          <Title>{item.title}</Title>
+          <Button variant='contained'>SHOW NOW</Button>
+        </Details>
+      </Link>
     </Container>
   )
 }
