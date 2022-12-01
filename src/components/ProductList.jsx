@@ -1,15 +1,53 @@
 /** @format */
 
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import styled from 'styled-components'
-import { products } from '../data'
 import ProductItem from './ProductItem'
 
-function ProductList() {
+function ProductList({ category, size, price }) {
+  const [products, setProducts] = useState([])
+  const [filteredProducts, setFilteredProducts] = useState([])
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await axios.get(
+          category
+            ? `http://localhost:5000/api/products?category=${category}`
+            : 'http://localhost:5000/api/products'
+        )
+        setProducts(res.data)
+      } catch (error) {}
+    }
+    getProducts()
+  }, [category])
+
+  useEffect(() => {
+    category &&
+      setFilteredProducts(products.filter((item) => item.size.includes(size)))
+  }, [products, category, size])
+
+  useEffect(() => {
+    if (price === 'asc') {
+      setFilteredProducts((prev) => [...prev].sort((a, b) => a.price - b.price))
+    } else {
+      setFilteredProducts((prev) => [...prev].sort((a, b) => b.price - a.price))
+    }
+  }, [price])
+
+  // useEffect(() => {
+  //   category &&
+  //     setFilteredProducts(products.filter((item) => item.color.includes(color)))
+  // }, [products, category, color])
+
   return (
     <Container>
-      {products.map((item) => (
-        <ProductItem item={item} key={item.id} />
-      ))}
+      {category
+        ? filteredProducts.map((item) => (
+            <ProductItem item={item} key={item._id} />
+          ))
+        : products.map((item) => <ProductItem item={item} key={item._id} />)}
     </Container>
   )
 }
