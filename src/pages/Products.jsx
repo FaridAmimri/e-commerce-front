@@ -12,15 +12,19 @@ import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import { mobile, tablet } from '../responsive'
 import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 function Products() {
-  const [color, setColor] = useState('')
-  const [size, setSize] = useState('')
+  // const [color, setColor] = useState('')
+  const [size, setSize] = useState('Newborn')
   const [price, setPrice] = useState('')
 
-  const handleColor = (event) => {
-    setColor(event.target.value)
-  }
+  const location = useLocation()
+  const category = location.pathname.split('/')[2]
+
+  // const handleColor = (event) => {
+  //   setColor(event.target.value)
+  // }
 
   const handleSize = (event) => {
     setSize(event.target.value)
@@ -34,11 +38,11 @@ function Products() {
     <Container>
       <Navbar />
       <Announcement />
-      <Title>Babies</Title>
+      <Title>{category}</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
-          <FormControl sx={{ minWidth: 120 }} size='small'>
+          {/* <FormControl sx={{ minWidth: 120 }} size='small'>
             <InputLabel id='color-select'>Color</InputLabel>
             <Select
               labelId='color-select'
@@ -47,37 +51,38 @@ function Products() {
               label='Color'
               onChange={handleColor}
             >
-              <MenuItem value=''>Color</MenuItem>
-              <MenuItem value={10}>White</MenuItem>
-              <MenuItem value={20}>Black</MenuItem>
-              <MenuItem value={30}>Red</MenuItem>
-              <MenuItem value={30}>Blue</MenuItem>
-              <MenuItem value={30}>Yellow</MenuItem>
-              <MenuItem value={30}>Green</MenuItem>
+              <MenuItem value='color'>Color</MenuItem>
+              <MenuItem value='White'>White</MenuItem>
+              <MenuItem value='Black'>Pink</MenuItem>
+              <MenuItem value='Red'>Red</MenuItem>
+              <MenuItem value='Gray'>Gray</MenuItem>
+              <MenuItem value='Blue'>Blue</MenuItem>
+              <MenuItem value='Yellow'>Yellow</MenuItem>
+              <MenuItem value='Green'>Green</MenuItem>
             </Select>
-          </FormControl>
+          </FormControl> */}
           <FormControl sx={{ minWidth: 120 }} size='small'>
-            <InputLabel id='size-select'>Size</InputLabel>
+            <InputLabel id='size-sort'>Size</InputLabel>
             <Select
-              labelId='size-select'
-              id='size-select'
+              labelId='size-sort'
+              id='size-sort'
               value={size}
               label='Size'
               onChange={handleSize}
             >
               <MenuItem value=''>Size</MenuItem>
-              <MenuItem value={10}>Newborn</MenuItem>
-              <MenuItem value={20}>3 Months</MenuItem>
-              <MenuItem value={30}>6 Months</MenuItem>
-              <MenuItem value={30}>9 Months</MenuItem>
-              <MenuItem value={30}>12 Months</MenuItem>
+              <MenuItem value='Newborn'>Newborn</MenuItem>
+              <MenuItem value='3 months'>3 Months</MenuItem>
+              <MenuItem value='6 months'>6 Months</MenuItem>
+              <MenuItem value='9 months'>9 Months</MenuItem>
+              <MenuItem value='12 months'>12 Months</MenuItem>
             </Select>
           </FormControl>
         </Filter>
         <Filter>
           <FilterText>Sort Products:</FilterText>
           <FormControl sx={{ minWidth: 120 }} size='small'>
-            <InputLabel id='price-sort'>Order</InputLabel>
+            <InputLabel id='price-sort'>Price</InputLabel>
             <Select
               labelId='price-sort'
               id='price-sort'
@@ -86,13 +91,13 @@ function Products() {
               onChange={handlePrice}
             >
               <MenuItem value=''>Order</MenuItem>
-              <MenuItem value={10}>Price (asc)</MenuItem>
-              <MenuItem value={20}>Price (desc)</MenuItem>
+              <MenuItem value='asc'>Price (asc)</MenuItem>
+              <MenuItem value='desc'>Price (desc)</MenuItem>
             </Select>
           </FormControl>
         </Filter>
       </FilterContainer>
-      <ProductList />
+      <ProductList category={category} size={size} price={price} />
       <Newsletter />
       <Footer />
     </Container>
@@ -118,6 +123,7 @@ const Filter = styled.div`
   display: flex;
   margin: 20px;
   gap: 10px;
+  align-items: center;
   ${mobile({ flexDirection: 'column', flex: 1 })};
   ${tablet({ flexDirection: 'column', flex: 1 })};
 `
