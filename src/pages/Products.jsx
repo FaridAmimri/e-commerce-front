@@ -15,16 +15,11 @@ import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 function Products() {
-  // const [color, setColor] = useState('')
-  const [size, setSize] = useState('Newborn')
-  const [price, setPrice] = useState('')
-
   const location = useLocation()
   const category = location.pathname.split('/')[2]
 
-  // const handleColor = (event) => {
-  //   setColor(event.target.value)
-  // }
+  const [size, setSize] = useState('Newborn')
+  const [price, setPrice] = useState('asc')
 
   const handleSize = (event) => {
     setSize(event.target.value)
@@ -42,25 +37,6 @@ function Products() {
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
-          {/* <FormControl sx={{ minWidth: 120 }} size='small'>
-            <InputLabel id='color-select'>Color</InputLabel>
-            <Select
-              labelId='color-select'
-              id='color-select'
-              value={color}
-              label='Color'
-              onChange={handleColor}
-            >
-              <MenuItem value='color'>Color</MenuItem>
-              <MenuItem value='White'>White</MenuItem>
-              <MenuItem value='Black'>Pink</MenuItem>
-              <MenuItem value='Red'>Red</MenuItem>
-              <MenuItem value='Gray'>Gray</MenuItem>
-              <MenuItem value='Blue'>Blue</MenuItem>
-              <MenuItem value='Yellow'>Yellow</MenuItem>
-              <MenuItem value='Green'>Green</MenuItem>
-            </Select>
-          </FormControl> */}
           <FormControl sx={{ minWidth: 120 }} size='small'>
             <InputLabel id='size-sort'>Size</InputLabel>
             <Select
@@ -70,7 +46,6 @@ function Products() {
               label='Size'
               onChange={handleSize}
             >
-              <MenuItem value=''>Size</MenuItem>
               <MenuItem value='Newborn'>Newborn</MenuItem>
               <MenuItem value='3 months'>3 Months</MenuItem>
               <MenuItem value='6 months'>6 Months</MenuItem>
@@ -90,7 +65,6 @@ function Products() {
               label='Price'
               onChange={handlePrice}
             >
-              <MenuItem value=''>Order</MenuItem>
               <MenuItem value='asc'>Price (asc)</MenuItem>
               <MenuItem value='desc'>Price (desc)</MenuItem>
             </Select>
