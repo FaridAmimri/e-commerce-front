@@ -40,8 +40,8 @@ function Footer() {
         <List>
           <ListItem>Home</ListItem>
           <ListItem>Cart</ListItem>
-          <ListItem>Man Fashion</ListItem>
-          <ListItem>Woman Fashion</ListItem>
+          <ListItem>Boy</ListItem>
+          <ListItem>Girl</ListItem>
           <ListItem>Accessories</ListItem>
           <ListItem>My Account</ListItem>
           <ListItem>Order Tracking</ListItem>
@@ -73,7 +73,8 @@ export default Footer
 
 const Container = styled.div`
   display: flex;
-  ${mobile({ flexDirection: 'column' })};
+  padding-left: 30px;
+  ${mobile({ flexDirection: 'column', paddingLeft: 0 })};
   ${tablet({ flexDirection: 'column' })};
 `
 
