@@ -5,6 +5,7 @@ import {
   SearchOutlined,
   ShoppingCartOutlined
 } from '@mui/icons-material'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 function ProductItem({ item }) {
@@ -12,17 +13,19 @@ function ProductItem({ item }) {
     <Container>
       <Circle />
       <Image src={item.image} />
-      <Details>
-        <Icon>
-          <ShoppingCartOutlined />
-        </Icon>
-        <Icon>
-          <SearchOutlined />
-        </Icon>
-        <Icon>
-          <FavoriteBorderOutlined />
-        </Icon>
-      </Details>
+      <Link to={`/product/${item._id}`}>
+        <Details>
+          <Icon>
+            <ShoppingCartOutlined />
+          </Icon>
+          <Icon>
+            <SearchOutlined />
+          </Icon>
+          <Icon>
+            <FavoriteBorderOutlined />
+          </Icon>
+        </Details>
+      </Link>
     </Container>
   )
 }
@@ -62,7 +65,7 @@ const Container = styled.div`
 const Circle = styled.div``
 
 const Image = styled.img`
-  height: 75%;
+  height: 90%;
 `
 
 const Icon = styled.div`
