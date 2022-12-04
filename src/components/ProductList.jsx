@@ -1,9 +1,9 @@
 /** @format */
 
-import { useState, useEffect } from 'react'
-import axios from 'axios'
 import styled from 'styled-components'
 import ProductItem from './ProductItem'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 function ProductList({ category, size, price }) {
   const [products, setProducts] = useState([])
@@ -25,7 +25,7 @@ function ProductList({ category, size, price }) {
 
   useEffect(() => {
     category &&
-      setFilteredProducts(products.filter((item) => item.size.includes(size)))
+      setFilteredProducts(products.filter((item) => item.sizes.includes(size)))
   }, [products, category, size])
 
   useEffect(() => {
@@ -35,11 +35,6 @@ function ProductList({ category, size, price }) {
       setFilteredProducts((prev) => [...prev].sort((a, b) => b.price - a.price))
     }
   }, [price])
-
-  // useEffect(() => {
-  //   category &&
-  //     setFilteredProducts(products.filter((item) => item.color.includes(color)))
-  // }, [products, category, color])
 
   return (
     <Container>
