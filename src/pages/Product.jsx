@@ -10,62 +10,119 @@ import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import { Remove, Add } from '@mui/icons-material'
 import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
 import CircleIcon from '@mui/icons-material/Circle'
 import { mobile, tablet } from '../responsive'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useLocation } from 'react-router-dom'
 
 function Product() {
+  const location = useLocation()
+  const productId = location.pathname.split('/')[2]
+
+  const [product, setProduct] = useState({})
+  const [color, setColor] = useState()
+  const [size, setSize] = useState()
+  const [quantity, setQuantity] = useState(1)
+
+  console.log(color)
+  console.log(size)
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/api/products/${productId}`
+        )
+        const firstSize = res.data.sizes[0]
+        const firstColor = res.data.colors[0]
+        setProduct(res.data)
+        setSize(firstSize)
+        setColor(firstColor)
+      } catch (error) {}
+    }
+    getProduct()
+  }, [productId])
+
+  const handleColor = (event) => {
+    setColor(event.target.value)
+  }
+
+  const handleSize = (event) => {
+    setSize(event.target.value)
+  }
+
+  const handleQuantity = (type) => {
+    if (type === 'dec') {
+      quantity > 1 && setQuantity(quantity - 1)
+    } else {
+      setQuantity(quantity + 1)
+    }
+  }
+
+  const handleClick = () => {}
+
   return (
     <Container>
       <Navbar />
       <Announcement />
       <Wrapper>
         <ImageContainer>
-          <Image src='assets/products/product3.png' />
+          <Image src={product.image} />
         </ImageContainer>
         <DetailsContainer>
-          <Title>Baby Sweet</Title>
-          <Description>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi autem
-            temporibus, quod eaque delectus eligendi, assumenda minus sapiente
-            dolore alias quidem.
-          </Description>
-          <Price>19 €</Price>
+          <Title>{product.title}</Title>
+          <Description>{product.description}</Description>
+          <Price>{product.price} €</Price>
           <FilterContainer>
             <FilterWrapper>
               <FilterTitle>Color</FilterTitle>
-              <FilterColor>
-                <IconButton style={{ padding: 0 }}>
-                  <CircleIcon style={{ color: 'green' }} />
-                </IconButton>
-                <IconButton style={{ padding: 0 }}>
-                  <CircleIcon style={{ color: 'black' }} />
-                </IconButton>
-                <IconButton style={{ padding: 0 }}>
-                  <CircleIcon style={{ color: 'gray' }} />
-                </IconButton>
-              </FilterColor>
+              {product.colors && (
+                <FormControl sx={{ margin: 1 }} size='small'>
+                  <Select
+                    labelId='color-select'
+                    id='color-select'
+                    value={color}
+                    onChange={handleColor}
+                  >
+                    {product.colors.map((color) => (
+                      <MenuItem value={color} key={color}>
+                        <CircleIcon style={{ color: `${color}` }} />
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
             </FilterWrapper>
             <FilterWrapper>
               <FilterTitle>Size</FilterTitle>
-              <FormControl sx={{ minWidth: 120, margin: 1 }} size='small'>
-                <Select labelId='size-select' id='size-select' defaultValue={0}>
-                  <MenuItem value={0}>0 Months</MenuItem>
-                  <MenuItem value={3}>3 Months</MenuItem>
-                  <MenuItem value={6}>6 Months</MenuItem>
-                  <MenuItem value={9}>9 Months</MenuItem>
-                  <MenuItem value={12}>12 Months</MenuItem>
-                </Select>
-              </FormControl>
+              {product.sizes && (
+                <FormControl sx={{ minWidth: 120, margin: 1 }} size='small'>
+                  <Select
+                    labelId='size-select'
+                    id='size-select'
+                    value={size}
+                    onChange={handleSize}
+                  >
+                    {product.sizes.map((size) => (
+                      <MenuItem value={size} key={size}>
+                        {size}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
             </FilterWrapper>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove onClick={() => handleQuantity('dec')} />
+              <Amount>{quantity}</Amount>
+              <Add onClick={() => handleQuantity('inc')} />
             </AmountContainer>
-            <Button variant='outlined'>ADD TO CART</Button>
+            <Button variant='outlined' onClick={handleClick}>
+              ADD TO CART
+            </Button>
           </AddContainer>
         </DetailsContainer>
       </Wrapper>
@@ -121,6 +178,7 @@ const Price = styled.span`
 
 const FilterContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   margin: 30px 0px;
   align-items: center;
   justify-content: space-between;
@@ -140,14 +198,8 @@ const FilterTitle = styled.h3`
   font-weight: 300;
 `
 
-const FilterColor = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin: 0px 5px;
-`
-
 const AddContainer = styled.div`
-  width: 50%;
+  width: 250px;
   display: flex;
   align-items: center;
   justify-content: space-between;
