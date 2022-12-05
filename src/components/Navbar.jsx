@@ -12,6 +12,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import { mobile, tablet } from '../responsive'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
   const [expandNavbar, setExpandNavbar] = useState(false)
@@ -47,15 +48,17 @@ function Navbar() {
         <Right className={expandNavbar ? 'visible' : 'unvisible'}>
           <MenuItem>REGISTER</MenuItem>
           <MenuItem>SIGN IN</MenuItem>
-          <MenuItem>
-            <Badge
-              badgeContent={quantity}
-              color='primary'
-              className='cartButton'
-            >
-              <ShoppingCartOutlinedIcon />
-            </Badge>
-          </MenuItem>
+          <Link to='/cart'>
+            <MenuItem>
+              <Badge
+                badgeContent={quantity}
+                color='primary'
+                className='cartButton'
+              >
+                <ShoppingCartOutlinedIcon />
+              </Badge>
+            </MenuItem>
+          </Link>
         </Right>
         <MenuButton className='menuButton'>
           <IconButton
