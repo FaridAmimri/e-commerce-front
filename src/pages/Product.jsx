@@ -15,18 +15,18 @@ import { mobile, tablet } from '../responsive'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addProduct } from '../redux/cartSlice'
 
 function Product() {
   const location = useLocation()
   const productId = location.pathname.split('/')[2]
+  const dispatch = useDispatch()
 
   const [product, setProduct] = useState({})
   const [color, setColor] = useState()
   const [size, setSize] = useState()
   const [quantity, setQuantity] = useState(1)
-
-  console.log(color)
-  console.log(size)
 
   useEffect(() => {
     const getProduct = async () => {
@@ -60,7 +60,9 @@ function Product() {
     }
   }
 
-  const handleClick = () => {}
+  const handleClick = () => {
+    dispatch(addProduct({ ...product, quantity, color, size }))
+  }
 
   return (
     <Container>
