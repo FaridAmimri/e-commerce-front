@@ -8,8 +8,12 @@ import Button from '@mui/material/Button'
 import CircleIcon from '@mui/icons-material/Circle'
 import { Remove, Add } from '@mui/icons-material'
 import { mobile, tablet } from '../responsive'
+import { useSelector } from 'react-redux'
 
 function Cart() {
+  const cart = useSelector((state) => state.cart)
+  console.log(cart)
+
   return (
     <Container>
       <Navbar />
@@ -31,67 +35,48 @@ function Cart() {
 
         <Bottom>
           <Article>
-            <Item>
-              <ProductDetail>
-                <Image src='assets/products/product3.png'></Image>
-                <Details>
-                  <Name>
-                    <b>Product: </b>Hanks Baby
-                  </Name>
-                  <Id>
-                    <b>Id: </b>9381739453
-                  </Id>
-                  <Color>
-                    <CircleIcon style={{ color: 'green' }} />
-                  </Color>
-                  <Size>
-                    <b>Size: </b>3 Months
-                  </Size>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <AmountContainer>
-                  <Remove />
-                  <Amount>2</Amount>
-                  <Add />
-                </AmountContainer>
-                <Price>30 €</Price>
-              </PriceDetail>
-            </Item>
-            <Hr />
-            <Item>
-              <ProductDetail>
-                <Image src='assets/products/product6.png'></Image>
-                <Details>
-                  <Name>
-                    <b>Product: </b>Moony Baby
-                  </Name>
-                  <Id>
-                    <b>Id: </b>9381739453
-                  </Id>
-                  <Color>
-                    <CircleIcon style={{ color: 'pink' }} />
-                  </Color>
-                  <Size>
-                    <b>Size: </b>6 Months
-                  </Size>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <AmountContainer>
-                  <Remove />
-                  <Amount>2</Amount>
-                  <Add />
-                </AmountContainer>
-                <Price>30 €</Price>
-              </PriceDetail>
-            </Item>
+            {cart.products.map((product) => (
+              <>
+                <Item key={product._id}>
+                  <ProductDetail>
+                    <Image src={product.image}></Image>
+                    <Details>
+                      <Name>
+                        <b>Product: </b>
+                        {product.title}
+                      </Name>
+                      <Id>
+                        <b>Id: </b>
+                        {product._id}
+                      </Id>
+                      <Color>
+                        <CircleIcon style={{ color: `${product.color}` }} />
+                      </Color>
+                      <Size>
+                        <b>Size: </b>
+                        {product.size}
+                      </Size>
+                    </Details>
+                  </ProductDetail>
+                  <PriceDetail>
+                    <AmountContainer>
+                      <Remove />
+                      <Amount>{product.quantity}</Amount>
+                      <Add />
+                    </AmountContainer>
+                    <Price>{product.price * product.quantity} €</Price>
+                  </PriceDetail>
+                </Item>
+                <Hr />
+              </>
+            ))}
           </Article>
+
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryContent>Subtotal</SummaryContent>
-              <SummaryPrice>80 €</SummaryPrice>
+              <SummaryPrice>{cart.total} €</SummaryPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryContent>Estimated Shipping</SummaryContent>
@@ -103,7 +88,7 @@ function Cart() {
             </SummaryItem>
             <SummaryItem type='total'>
               <SummaryContent>Total</SummaryContent>
-              <SummaryPrice>83 €</SummaryPrice>
+              <SummaryPrice>{cart.total} €</SummaryPrice>
             </SummaryItem>
             <ButtonContainer>
               <Button variant='contained' size='small'>
