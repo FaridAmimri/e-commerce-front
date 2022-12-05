@@ -11,9 +11,11 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import MenuIcon from '@mui/icons-material/Menu'
 import { mobile, tablet } from '../responsive'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 
 function Navbar() {
   const [expandNavbar, setExpandNavbar] = useState(false)
+  const quantity = useSelector((state) => state.cart.quantity)
 
   return (
     <Container>
@@ -46,7 +48,11 @@ function Navbar() {
           <MenuItem>REGISTER</MenuItem>
           <MenuItem>SIGN IN</MenuItem>
           <MenuItem>
-            <Badge badgeContent={4} color='primary' className='cartButton'>
+            <Badge
+              badgeContent={quantity}
+              color='primary'
+              className='cartButton'
+            >
               <ShoppingCartOutlinedIcon />
             </Badge>
           </MenuItem>
