@@ -9,10 +9,37 @@ import CircleIcon from '@mui/icons-material/Circle'
 import { Remove, Add } from '@mui/icons-material'
 import { mobile, tablet } from '../responsive'
 import { useSelector } from 'react-redux'
+import StripeCheckout from 'react-stripe-checkout'
+import { useState, useEffect } from 'react'
+import { userRequest } from '../requests'
+import { useNavigate } from 'react-router-dom'
+
+const KEY = process.env.REACT_APP_STRIPE
 
 function Cart() {
   const cart = useSelector((state) => state.cart)
-  console.log(cart)
+  const [stripeToken, setStripeToken] = useState(null)
+  const navigate = useNavigate()
+
+  const handleToken = (token) => {
+    setStripeToken(token)
+  }
+
+  useEffect(() => {
+    const request = async (req, res) => {
+      try {
+        const res = await userRequest.post('checkout/payment', {
+          tokenId: stripeToken.id,
+          amount: cart.total * 100
+        })
+        console.log(res.data)
+        navigate('/success', { data: res.data })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    stripeToken && request()
+  }, [stripeToken, cart.total, navigate])
 
   return (
     <Container>
@@ -36,8 +63,8 @@ function Cart() {
         <Bottom>
           <Article>
             {cart.products.map((product) => (
-              <>
-                <Item key={product._id}>
+              <Product key={product._id}>
+                <Item>
                   <ProductDetail>
                     <Image src={product.image}></Image>
                     <Details>
@@ -68,7 +95,7 @@ function Cart() {
                   </PriceDetail>
                 </Item>
                 <Hr />
-              </>
+              </Product>
             ))}
           </Article>
 
@@ -90,11 +117,18 @@ function Cart() {
               <SummaryContent>Total</SummaryContent>
               <SummaryPrice>{cart.total} €</SummaryPrice>
             </SummaryItem>
-            <ButtonContainer>
-              <Button variant='contained' size='small'>
-                CHECKOUT NOW
-              </Button>
-            </ButtonContainer>
+            <StripeCheckout
+              name='BiBi'
+              image=''
+              billingAddress
+              shippingAddress
+              description={`Your total is ${cart.total} €`}
+              amount={cart.total * 100}
+              token={handleToken}
+              stripeKey={KEY}
+            >
+              <StripeButton>CHECKOUT NOW</StripeButton>
+            </StripeCheckout>
           </Summary>
         </Bottom>
       </Wrapper>
@@ -152,6 +186,8 @@ const Article = styled.div`
   display: flex;
   flex-direction: column;
 `
+
+const Product = styled.div``
 
 const Item = styled.div`
   display: flex;
@@ -245,10 +281,18 @@ const SummaryContent = styled.span``
 
 const SummaryPrice = styled.span``
 
-const ButtonContainer = styled.div`
-  ${mobile({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  })};
+const StripeButton = styled.button`
+  width: 80%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  font-weight: 600;
 `
+
+// const ButtonContainer = styled.div`
+//   ${mobile({
+//     display: 'flex',
+//     justifyContent: 'center',
+//     alignItems: 'center'
+//   })};
+// `
