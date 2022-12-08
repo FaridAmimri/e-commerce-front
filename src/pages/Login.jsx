@@ -6,8 +6,22 @@ import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { mobile, tablet } from '../responsive'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../redux/apiCalls'
 
 function Login() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    login(dispatch, { username, password })
+    console.log(user)
+  }
+
   return (
     <>
       <Navbar />
@@ -21,6 +35,7 @@ function Login() {
               id='username'
               label='Username'
               color='success'
+              onChange={(e) => setUsername(e.target.value)}
             />
             <TextField
               className='input'
@@ -28,8 +43,16 @@ function Login() {
               label='Password'
               type='password'
               color='success'
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <Button variant='contained' size='large' color='success'>
+            {user.error && <Error>Invalid username or password</Error>}
+            <Button
+              variant='contained'
+              size='large'
+              color='success'
+              onClick={handleClick}
+              disabled={user.isFetching}
+            >
               LOGIN
             </Button>
             <Link>FORGOT PASSWORD</Link>
@@ -83,4 +106,8 @@ const Link = styled.a`
   font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
+`
+
+const Error = styled.span`
+  color: red;
 `
