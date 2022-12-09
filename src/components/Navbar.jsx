@@ -46,14 +46,14 @@ function Navbar() {
           BiBi.
         </Center>
         <Right className={expandNavbar ? 'visible' : 'unvisible'}>
-          <Link to='/register'>
+          <Link to='/register' className='link'>
             <MenuItem>REGISTER</MenuItem>
           </Link>
-          <Link to='/login'>
+          <Link to='/login' className='link'>
             <MenuItem>SIGN IN</MenuItem>
           </Link>
-          <Link to='/cart'>
-            <MenuItem>
+          <Link to='/cart' className='link'>
+            <MenuItem className='link'>
               <Badge
                 badgeContent={quantity}
                 color='primary'
@@ -141,6 +141,10 @@ const Right = styled.div`
   justify-content: center;
   flex: 1;
   justify-content: flex-end;
+  .link {
+    text-decoration: none;
+    color: black;
+  }
   .cartButton {
     font-size: 'xx-large';
     ${tablet({
