@@ -1,10 +1,10 @@
 /** @format */
 
 import styled from 'styled-components'
-import TextField from '@mui/material/TextField'
-import InputAdornment from '@mui/material/InputAdornment'
+// import TextField from '@mui/material/TextField'
+// import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
-import SearchIcon from '@mui/icons-material/Search'
+// import SearchIcon from '@mui/icons-material/Search'
 import ChildFriendlyOutlinedIcon from '@mui/icons-material/ChildFriendlyOutlined'
 import Badge from '@mui/material/Badge'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
@@ -21,9 +21,9 @@ function Navbar() {
   return (
     <Container>
       <Wrapper className={expandNavbar ? 'open' : 'close'}>
-        <Left>
-          <Language>EN</Language>
-          <SearchContainer>
+        <Left className={expandNavbar ? 'home' : ''}>
+          {/* <Language>EN</Language> */}
+          {/* <SearchContainer>
             <TextField
               size='small'
               placeholder='Search'
@@ -39,7 +39,10 @@ function Navbar() {
               }}
               variant='outlined'
             />
-          </SearchContainer>
+          </SearchContainer> */}
+          <Link to='/' className='link'>
+            <MenuItem>HOME</MenuItem>
+          </Link>
         </Left>
         <Center>
           <ChildFriendlyOutlinedIcon style={{ fontSize: 'xx-large' }} />
@@ -81,6 +84,10 @@ function Navbar() {
 export default Navbar
 
 const Container = styled.div`
+  .link {
+    text-decoration: none;
+    color: black;
+  }
   .open {
     ${mobile({ height: '100vh', alignItems: 'flex-start' })}
   }
@@ -94,7 +101,9 @@ const Wrapper = styled.div`
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
-  ${mobile({ padding: '10px 0' })}
+  .home {
+    padding-top: 10px;
+  }
 `
 
 const Left = styled.div`
@@ -103,26 +112,22 @@ const Left = styled.div`
   justify-content: center;
   flex: 1;
   justify-content: flex-start;
-  .searchIcon {
-    font-size: x-large;
-    ${mobile({ fontSize: 'large', padding: '0px' })}
-  }
 `
 
-const Language = styled.div`
-  font-size: 14px;
-  cursor: pointer;
-  ${mobile({ display: 'none' })};
-  ${tablet({ display: 'none' })}
-`
+// const Language = styled.div`
+//   font-size: 14px;
+//   cursor: pointer;
+//   ${mobile({ display: 'none' })};
+//   ${tablet({ display: 'none' })}
+// `
 
-const SearchContainer = styled.div`
-  display: flex
-  align-items: center;
-  justify-content: center;
-  margin-left: 10px;
-  ${mobile({ padding: 0 })}
-`
+// const SearchContainer = styled.div`
+//   display: flex
+//   align-items: center;
+//   justify-content: center;
+//   margin-left: 10px;
+//   ${mobile({ padding: 0 })}
+// `
 
 const Center = styled.div`
   flex: 1;
@@ -141,10 +146,9 @@ const Right = styled.div`
   justify-content: center;
   flex: 1;
   justify-content: flex-end;
-  .link {
-    text-decoration: none;
-    color: black;
-  }
+  ${tablet({
+    minWidth: '140px'
+  })};
   .cartButton {
     font-size: 'xx-large';
     ${tablet({
@@ -168,11 +172,11 @@ const MenuItem = styled.div`
   cursor: pointer;
   margin-left: 25px;
   ${mobile({
-    fontSize: '16px',
+    fontSize: '12px',
     marginLeft: 0
   })};
   ${tablet({
-    fontSize: '12px',
+    fontSize: '13px',
     marginLeft: '5px'
   })}
 `
@@ -183,7 +187,6 @@ const MenuButton = styled.div`
     display: 'flex',
     flex: 1,
     justifyContent: 'flex-end',
-    marginRight: '15px',
     cursor: 'pointer'
   })}
 `
