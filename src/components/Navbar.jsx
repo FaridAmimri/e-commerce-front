@@ -46,7 +46,7 @@ function Navbar() {
         </Left>
         <Center>
           <ChildFriendlyOutlinedIcon style={{ fontSize: 'xx-large' }} />
-          BiBi.
+          e-BiBi.
         </Center>
         <Right className={expandNavbar ? 'visible' : 'unvisible'}>
           <Link to='/register' className='link'>
