@@ -14,7 +14,7 @@ function Footer() {
   return (
     <Container>
       <Left>
-        <Title>BiBi.</Title>
+        <Title>e-BiBi.</Title>
         <Description>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. At quia
           minima aut repellendus quo. Suscipit distinctio dolor asperiores
